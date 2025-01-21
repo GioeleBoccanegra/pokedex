@@ -12,7 +12,6 @@
     for(let i=0; i<data.results.length; i++ ){
       let pokeapi = document.createElement("option");
       pokeapi.value = data.results[count].name;
-      pokeapi.innerHTML = data.results[count].name;
       pokemonLista.appendChild(pokeapi); // Aggiungi l'opzione alla lista*/
       count++
     }
