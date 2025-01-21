@@ -2,6 +2,7 @@
   const pokemonLista = document.querySelector("[data-pokemon]");
   const pokemonNome = document.querySelector("[data-pokemon-name]");
   const cercaPokemon = document.querySelector("[data-cerca-pokemon]")
+  const spriteContainer = document.querySelector("[data-pokemon-sprite]");
   let options = [];
   fetch("https://pokeapi.co/api/v2/pokemon?limit=151", {
     method: "GET"
@@ -27,7 +28,16 @@ cercaPokemon.addEventListener("click",()=>{
   console.log(pokemonNome.value)
   const inputVAl = pokemonNome.value.toLowerCase()
   if(options.includes(inputVAl)){
-    console.log("ciao")
+    fetch(`https://pokeapi.co/api/v2/pokemon/${inputVAl}`, {
+    method: "GET"
+  }).then(response=>{
+    return response.json()
+  }).then(data=>{
+    console.log(data.sprites.front_default)
+    let pokesprite = document.createElement("img");
+      pokesprite.src = data.sprites.front_default;
+      spriteContainer.appendChild(pokesprite); // Aggiungi l'opzione alla lista
+  })
   } else{
     console.log("inserisci un nome esistente")
   }
