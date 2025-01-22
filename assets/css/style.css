@@ -1,120 +1,134 @@
+/* Stile generale */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    /* Stile generale */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      color: #343a40;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+h1 {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 20px;
+}
 
-    h1 {
-      font-size: 2.5rem;
-      color: #007bff;
-      margin-bottom: 20px;
-    }
+/* Stile per il contenitore del modulo */
+label {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
 
+input {
+  padding: 8px;
+  font-size: 1rem;
+  border: 2px solid #ced4da;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 10px;
+  width: 250px; /* Impostato una larghezza fissa */
+}
 
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 
+button {
+  padding: 8px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  width: 200px; /* Impostato una larghezza fissa */
+}
 
-    /* Stile per il contenitore del modulo */
-    label {
-      font-size: 1.2rem;
-      margin-right: 10px;
-    }
+button:hover {
+  background-color: #0056b3;
+}
 
-    input {
-      padding: 8px;
-      font-size: 1rem;
-      border: 2px solid #ced4da;
-      border-radius: 5px;
-      margin-right: 10px;
-      margin-top: 10px;
-    }
+h2 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  display: block;
+  margin: 10px 0;
+}
 
-    input:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
+.pokedex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  width: 350px;
+  border-radius: 10px;
+  border: 2px dashed #ced4da;
+  background-color: #ffffff;
+}
 
-    button {
-      padding: 8px 15px;
-      font-size: 1rem;
-      color: #fff;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin-top: 20px;
-    }
+.pokedex img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 
-    button:hover {
-      background-color: #0056b3;
-    }
+/* Per la visualizzazione dei dati tipo e BST */
+#data-type, #data-bst-container {
+  font-size: 1.1rem;
+  margin-top: 15px;
+}
 
-    h2{
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      display: block;
-    }
+#data-type strong {
+  font-weight: bold;
+}
 
-    .pokedex{
-      display: flex;
-      flex-direction: column;
-    }
+#data-bst-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
 
-    #data-bst-container{
-      display: flex;
-      flex-direction: column;
-    }
+#data-bst-line p {
+  font-size: 1rem;
+  color: #333;
+  margin: 5px 0;
+}
 
+#data-bst-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
 
-    #data-bst-line{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 30px;
-    }
+/* Responsività */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
 
-    /* Stile per l'area dello sprite */
-    [data-pokedex] {
-      margin-top: 30px;
-      padding: 20px;
-      border: 2px dashed #ced4da;
-      border-radius: 10px;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 300px;
-      height: 300px;
-      flex-direction: column;
-    }
+  input, button {
+    font-size: 0.9rem;
+  }
 
-    [data-pokedex] img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
+  [data-pokedex] {
+    width: 100%;
+    height: 200px;
+  }
 
-    /* Responsività */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
+  button {
+    width: 150px; /* Ridotto per i dispositivi più piccoli */
+  }
 
-      input, button {
-        font-size: 0.9rem;
-      }
-
-      [data-pokedex] {
-        width: 100%;
-        height: 200px;
-      }
-    }
+  .pokedex {
+    width: 100%; /* Adatta la larghezza */
+    height: auto;
+  }
+}
