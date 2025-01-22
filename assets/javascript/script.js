@@ -33,15 +33,37 @@ function cleanInput(){
     const pokeSprite = spriteContainer.querySelector("img");
     const pokeName = pokedexBox.querySelector("h2");
     const pokemonTypeContainer = document.querySelector("#data-type")
+    const pokeBstContainer= document.querySelector("#data-bst-container")
+    const pokeBstLine = document.querySelectorAll("#data-bst-line")
+    const pokemonBst = document.querySelectorAll("#data-bst")
+
+
     if(pokeSprite){
       spriteContainer.removeChild(pokeSprite);
     }
+
+
     if (pokeName){
       pokedexBox.removeChild(pokeName);
     }
+
+
     if(pokemonTypeContainer){
       pokedexBox.removeChild(pokemonTypeContainer)
     }
+
+    if(pokeBstContainer){
+      pokedexBox.removeChild(pokeBstContainer)
+      if(pokeBstLine){
+        pokeBstLine.forEach(line => {
+          // Rimuove ogni #data-bst-line
+          line.remove();
+        })
+        }
+        
+      
+    }
+
   }
 
   function insertName(name){
