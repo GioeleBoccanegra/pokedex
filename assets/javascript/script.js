@@ -13,17 +13,34 @@
     pokedexBox.insertBefore(pokeName, pokedexBox.firstChild);
   }
 
+  function insertOption(data){
+    console.log(data.results[2].name)
+    console.log(data.results.length)
+    let count = 0
+    for(let i=0; i<data.results.length; i++ ){
+      let pokeapi = document.createElement("option");
+      pokeapi.value = data.results[count].name;
+      pokemonLista.appendChild(pokeapi); // Aggiungi l'opzione alla lista*/
+      options.push(data.results[count].name)
+      count++
+  }
+}
+
 function cleanInput(){
   pokemonNome.value=""
 }
   function cleanDiv(){
     const pokeSprite = spriteContainer.querySelector("img");
     const pokeName = pokedexBox.querySelector("h2");
+    const pokemonTypeContainer = document.querySelector("#data-type")
     if(pokeSprite){
       spriteContainer.removeChild(pokeSprite);
     }
     if (pokeName){
       pokedexBox.removeChild(pokeName);
+    }
+    if(pokemonTypeContainer){
+      pokedexBox.removeChild(pokemonTypeContainer)
     }
   }
 
@@ -34,17 +51,50 @@ function cleanInput(){
   }
 
   function insertType(data){
-console.log(data.types[0].type.name)
+    let pokeName = document.querySelector("h2");
+    let pokemontypeContainer = document.createElement("div")
+    pokemontypeContainer.id= "data-type"
+    pokemontypeContainer.innerHTML = "type: "
+    for(let i = 0; i<data.types.length; i++){
+    pokemontypeContainer.innerHTML += "<strong>" + data.types[i].type.name + "</strong";
+    if (i == data.types.length-2){
+      pokemontypeContainer.innerHTML+= "/"
+    }
+    }
+    pokeName.insertAdjacentElement("afterend", pokemontypeContainer);
   }
 
-  function inertWeakness(){
-
-  }
 
   function insertSprite (data){
     let pokeSprite = document.createElement("img");
     pokeSprite.src = data.sprites.front_default;
     spriteContainer.appendChild(pokeSprite); // Aggiungi l'opzione alla lista
+  }
+
+
+  function insertBst(data){
+    let pokeBstContainer = document.createElement("div")
+    pokeBstContainer.id= "data-bst-container"
+    pokedexBox.appendChild(pokeBstContainer)
+
+    for(let i = 0; i <data.stats.length;i+=2){
+    let pokeBstLine = document.createElement("div")
+    pokeBstLine.id = "data-bst-line"
+
+    let pokemonBst1 = document.createElement("p")
+    pokemonBst1.id = "data-bst"
+
+    let pokemonBst2 = document.createElement("p")
+    pokemonBst2.id = "data-bst"
+
+    pokeBstContainer.appendChild(pokeBstLine)
+    pokemonBst1.innerHTML = "<strong>" +data.stats[i].stat.name +"</strong>" +":"+ data.stats[i].base_stat
+    pokeBstLine.appendChild(pokemonBst1)
+    pokemonBst2.innerHTML = "<strong>" +data.stats[i+1].stat.name + "</strong>" +":"+ data.stats[i+1].base_stat
+    pokeBstLine.appendChild(pokemonBst2)
+
+     
+    }
   }
   
 
@@ -58,23 +108,13 @@ console.log(data.types[0].type.name)
   })
   .then(response => response.json())
   .then(data => {
-    console.log(data.results[2].name)
-    console.log(data.results.length)
-    let count = 0
-    for(let i=0; i<data.results.length; i++ ){
-      let pokeapi = document.createElement("option");
-      pokeapi.value = data.results[count].name;
-      pokemonLista.appendChild(pokeapi); // Aggiungi l'opzione alla lista*/
-      options.push(data.results[count].name)
-      count++
-    }
+   insertOption(data)
   })
   .catch(errore => {
     console.log(errore);
   });
 
 cercaPokemon.addEventListener("click",()=>{
-  console.log(pokemonNome.value)
   const inputVAl = pokemonNome.value.toLowerCase()
   if(options.includes(inputVAl)){
     let inputNamePokemon = pokemonNome.value
@@ -89,6 +129,7 @@ cercaPokemon.addEventListener("click",()=>{
     console.log(data.sprites.front_default)
     insertType(data)
     insertSprite(data)
+    insertBst(data)
   })
   } else{
     cleanDiv()
