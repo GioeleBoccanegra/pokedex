@@ -4,6 +4,27 @@
   const cercaPokemon = document.querySelector("[data-cerca-pokemon]")
   const spriteContainer = document.querySelector("[data-pokemon-sprite]");
   let options = [];
+
+function cleanInput(){
+  pokemonNome.value=""
+}
+  function cleanDiv(){
+    const pokeSprite = spriteContainer.querySelector("img");
+    if(pokeSprite){
+      spriteContainer.removeChild(pokeSprite);
+    }
+  }
+
+
+  function insertSprite (data){
+    let pokeSprite = document.createElement("img");
+    pokeSprite.src = data.sprites.front_default;
+    spriteContainer.appendChild(pokeSprite); // Aggiungi l'opzione alla lista
+  }
+
+
+
+
   fetch("https://pokeapi.co/api/v2/pokemon?limit=151", {
     method: "GET"
   })
@@ -28,18 +49,20 @@ cercaPokemon.addEventListener("click",()=>{
   console.log(pokemonNome.value)
   const inputVAl = pokemonNome.value.toLowerCase()
   if(options.includes(inputVAl)){
+    cleanInput()
+    cleanDiv()
     fetch(`https://pokeapi.co/api/v2/pokemon/${inputVAl}`, {
     method: "GET"
   }).then(response=>{
     return response.json()
   }).then(data=>{
     console.log(data.sprites.front_default)
-    let pokesprite = document.createElement("img");
-      pokesprite.src = data.sprites.front_default;
-      spriteContainer.appendChild(pokesprite); // Aggiungi l'opzione alla lista
+    insertSprite(data)
   })
   } else{
     console.log("inserisci un nome esistente")
   }
 })
+
+
 
