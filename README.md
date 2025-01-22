@@ -1,6 +1,7 @@
 # Pokedex Search App
 
 Questa è una semplice applicazione web che consente agli utenti di cercare un Pokémon per nome e visualizzare le sue informazioni di base, tra cui sprite, tipo e statistiche (statistiche base). Utilizza la PokéAPI per recuperare i dati dei Pokémon.
+utilizzabile qui: [gioele-boccanegra-pokedex-prima-gen.netlify.app](https://gioele-boccanegra-pokedex-prima-gen.netlify.app/)
 
 ## Funzionalità
 
